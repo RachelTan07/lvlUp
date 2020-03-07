@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <ImageView
@@ -40,5 +42,24 @@
         android:text="Loading Complete"
         android:visibility="invisible"
         android:textSize="24sp" />
+
+    <!-- Steps Text Box -->
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressbar"
+        android:text="Steps" />
+
+    <!-- Step Counter Text Box -->
+    <TextView
+        android:id="@+id/tv_steps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/tv_info"
+        android:text="0"
+        android:textSize="40sp" />
+
 </RelativeLayout>
 
