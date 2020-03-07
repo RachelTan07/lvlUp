@@ -10,15 +10,18 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.logging.Level;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     // Main Screen XP Bar
     private ProgressBar mXPBar;
-    private TextView mLevelText;
     private Handler mHandler = new Handler();
 
     // Main Screen Step Counter
@@ -30,11 +33,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Sets fullscreen and remove title
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getSupportActionBar().hide();
+
         setContentView(R.layout.activity_main);
 
         // Progress Bar Init
         mXPBar = findViewById(R.id.xpbar);
-        mLevelText = findViewById(R.id.xpmax);
 
         // Step Counter Init
         tv_steps = findViewById(R.id.tv_steps);
@@ -43,24 +50,22 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         new Thread(new Runnable() {
             @Override
             public void run() {
-                // Set xp bar to number of steps
-                while(currentSteps < 100){
-                    android.os.SystemClock.sleep(50);
+                // Set XP bar to number of steps
+                while (currentSteps < 100) {
+                    android.os.SystemClock.sleep(2);
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
+                            // Update XP Bar
                             mXPBar.setProgress(currentSteps);
                         }
                     });
                 }
 
-                // Display level up when xp bar is filled
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        if (currentSteps == 100) {
-                            mLevelText.setVisibility(View.VISIBLE);
-                        }
+
                     }
                 });
             }
@@ -99,5 +104,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
+
+    // Open level up dialog
+    public void openDialog() {
+        LevelDialog ld = new LevelDialog();
+        ld.show(getSupportFragmentManager(), "level dialog");
     }
 }
