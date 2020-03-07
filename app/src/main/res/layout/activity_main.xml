@@ -12,12 +12,13 @@
         android:layout_height="245dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        app:srcCompat="@drawable/character" />
+        app:srcCompat="@drawable/character"
+        android:progressDrawable="@drawable/horizontal_progress_drawable"/>
 
     <ProgressBar
         android:id="@+id/progressbar"
         style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="20dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="10dp"
@@ -25,7 +26,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:background="#DBDBDB"
+        android:progressDrawable="@drawable/horizontal_progress_drawable" />
 
     <TextView
         android:id="@+id/loadingComplete"
