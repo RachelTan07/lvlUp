@@ -16,16 +16,16 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
-    // Main Screen Progress Bar
-    private ProgressBar mProgressBar;
-    private TextView mLoadingText;
-    private int mProgressStatus = 0;
-    private Handler mHandler =new Handler();
+    // Main Screen XP Bar
+    private ProgressBar mXPBar;
+    private TextView mLevelText;
+    private Handler mHandler = new Handler();
 
     // Main Screen Step Counter
     TextView tv_steps;
     SensorManager sensorManager;
     boolean running = false;
+    int currentSteps = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
 
         // Progress Bar Init
-        mProgressBar = findViewById(R.id.progressbar);
-        mLoadingText = findViewById(R.id.loadingComplete);
+        mXPBar = findViewById(R.id.xpbar);
+        mLevelText = findViewById(R.id.xpmax);
 
         // Step Counter Init
         tv_steps = findViewById(R.id.tv_steps);
@@ -43,19 +43,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while(mProgressStatus < 100){
+                // Set xp bar to number of steps
+                while(currentSteps < 100){
                     android.os.SystemClock.sleep(50);
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            mProgressBar.setProgress(mProgressStatus);
+                            mXPBar.setProgress(currentSteps);
                         }
                     });
                 }
+
+                // Display level up when xp bar is filled
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mLoadingText.setVisibility(View.VISIBLE);
+                        if (currentSteps == 100) {
+                            mLevelText.setVisibility(View.VISIBLE);
+                            running = false;
+                        }
                     }
                 });
             }
@@ -80,17 +86,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         running = false;
     }
 
-
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (running) {
-            tv_steps.setText(String.valueOf(event.values[0]));
-            mProgressStatus = (int) event.values[0];
+
+            currentSteps = (int) event.values[0];
+            if (currentSteps > 100) {
+                currentSteps = currentSteps % 100;
+            }
+            tv_steps.setText(String.valueOf(currentSteps));
         }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
     }
 }

@@ -17,7 +17,7 @@
         app:srcCompat="@drawable/character" />
 
     <ProgressBar
-        android:id="@+id/progressbar"
+        android:id="@+id/xpbar"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="20dp"
@@ -30,13 +30,13 @@
         android:layout_marginBottom="10dp" />
 
     <TextView
-        android:id="@+id/loadingComplete"
+        android:id="@+id/xpmax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/progressbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Loading Complete"
+        android:text="Level Up!"
         android:visibility="invisible"
         android:textSize="24sp" />
 
