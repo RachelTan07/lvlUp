@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     public void run() {
                         if (currentSteps == 100) {
                             mLevelText.setVisibility(View.VISIBLE);
-                            running = false;
                         }
                     }
                 });

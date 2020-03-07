@@ -33,7 +33,7 @@
         android:id="@+id/xpmax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/progressbar"
+        android:layout_below="@id/xpbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:text="Level Up!"
@@ -45,7 +45,7 @@
         android:id="@+id/tv_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/progressbar"
+        android:layout_below="@id/xpbar"
         android:text="Steps" />
 
     <!-- Step Counter Text Box -->
