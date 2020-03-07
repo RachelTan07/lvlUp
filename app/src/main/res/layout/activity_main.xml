@@ -97,8 +97,29 @@
         android:id="@+id/trainingbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Training"
-        android:layout_below="@id/tv_steps"/>
+        android:layout_below="@id/tv_steps"
+        android:layout_marginTop="20dp"
+        android:text="Training" />
+
+    <Button
+        android:id="@+id/achievementsbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_steps"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="Achievements" />
+
+    <Button
+        android:id="@+id/mapbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_steps"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/achievementsbutton"
+        android:layout_marginLeft="45dp"
+        android:text="Map" />
 
 </RelativeLayout>
 
