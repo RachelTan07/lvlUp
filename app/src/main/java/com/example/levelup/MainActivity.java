@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
             public void run() {
                 while(mProgressStatus < 100){
-                    mProgressStatus++;
                     android.os.SystemClock.sleep(50);
                     mHandler.post(new Runnable() {
                         @Override
@@ -86,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onSensorChanged(SensorEvent event) {
         if (running) {
             tv_steps.setText(String.valueOf(event.values[0]));
+            mProgressStatus = (int) event.values[0];
         }
     }
 
