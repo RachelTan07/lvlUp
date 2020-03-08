@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     TextView tv_steps;
     SensorManager sensorManager;
     boolean running = false;
-    int currentSteps = 0;
+    int currentSteps = 1;
 
     // Navigation
     Button mTraining;
@@ -85,17 +85,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             public void run() {
                 // Set XP bar to number of steps
                 while (currentSteps < 100) {
-                    android.os.SystemClock.sleep(2);
+                    android.os.SystemClock.sleep(1);
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            // Update XP Bar
-                            mXPBar.setProgress(currentSteps);
-
-                            if (currentSteps == 50) {
-                                onPause();
-                                openDialog();
-                            }
                         }
                     });
                 }
@@ -138,7 +131,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onSensorChanged(SensorEvent event) {
         if (running) {
             currentSteps = ((int) event.values[0]) % 100;
-            tv_steps.setText(String.valueOf(currentSteps));
+            if (currentSteps == 0) {
+                tv_steps.setText("0");
+                onPause();
+                openDialog();
+            }
+            else {
+                // Update XP Bar and number of steps
+                tv_steps.setText(String.valueOf(currentSteps));
+                mXPBar.setProgress(currentSteps);
+            }
         }
     }
 
@@ -154,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             levelupDisplay = true;
             ld.show(getSupportFragmentManager(), "level dialog");
         }
-
     }
 
 }
