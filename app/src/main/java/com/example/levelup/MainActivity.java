@@ -28,17 +28,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     // Main Screen XP Bar
     private ProgressBar mXPBar;
     private Handler mHandler = new Handler();
+    public boolean levelupDisplay = false;
 
     // Main Screen Step Counter
     TextView tv_steps;
     SensorManager sensorManager;
     boolean running = false;
-    int currentSteps = 0;
+    int currentSteps = 1;
 
     // Navigation
-    private Button mtraining;
-    private Button machievements;
-    private Button mmap;
+    Button mTraining;
+    Button mAchievements;
+    Button mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,44 +60,40 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         tv_steps = findViewById(R.id.tv_steps);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
-        mtraining = findViewById(R.id.trainingbutton);
-        machievements = findViewById(R.id.achievementsbutton);
-        mmap = findViewById(R.id.mapbutton);
+        mTraining = findViewById(R.id.trainingbutton);
+        mAchievements = findViewById(R.id.achievementsbutton);
+        mMap = findViewById(R.id.mapbutton);
 
-        mtraining.setOnClickListener(new View.OnClickListener() {
+        mTraining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Training.class));
             }
         });
 
-        machievements.setOnClickListener(new View.OnClickListener() {
+        mAchievements.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Achievements.class));
             }
         });
 
-        mmap.setOnClickListener(new View.OnClickListener() {
+        mMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Map.class));
             }
         });
 
-
-
         new Thread(new Runnable() {
             @Override
             public void run() {
                 // Set XP bar to number of steps
                 while (currentSteps < 100) {
-                    android.os.SystemClock.sleep(2);
+                    android.os.SystemClock.sleep(1);
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            // Update XP Bar
-                            mXPBar.setProgress(currentSteps);
                         }
                     });
                 }
@@ -128,9 +125,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onPause();
         running = false;
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        if(countSensor!=null){
+        if (countSensor != null) {
             sensorManager.unregisterListener(this);
-        }else{
+        } else {
             Toast.makeText(this, "Sensor not found!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -141,17 +138,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (running) {
             currentSteps = ((int) event.values[0]) % 100;
 
-            if (currentSteps == 33) {
+            if (currentSteps == 0) {
                 tv_steps.setText("0");
                 my_character.levelUp();
                 mLevel.setText("L E V E L  " + String.valueOf(my_character.getLevel()));
-                //onPause();
-                //openDialog();
-            } else {
+                onPause();
+                openDialog();
+            }
+            else {
+                // Update XP Bar and number of steps
                 tv_steps.setText(String.valueOf(currentSteps));
                 mXPBar.setProgress(currentSteps);
             }
-
         }
     }
 
@@ -160,9 +158,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     // Open level up dialog
-    /*public void openDialog() {
+    public void openDialog() {
         LevelDialog ld = new LevelDialog();
-        ld.show(getSupportFragmentManager(), "level dialog");
-    }*/
+
+        if (!levelupDisplay) {
+            levelupDisplay = true;
+            ld.show(getSupportFragmentManager(), "level dialog");
+        }
+    }
 
 }
