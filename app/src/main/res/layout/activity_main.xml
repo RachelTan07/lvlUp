@@ -13,9 +13,10 @@
         android:id="@+id/level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
         android:text="L E V E L  9"
+        android:textColor="#614772"
         android:textSize="18sp" />
 
     <ImageView
@@ -25,14 +26,14 @@
         app:srcCompat="@drawable/shadow"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/level"
-        android:layout_marginTop="165dp"/>
+        android:layout_marginTop="175dp"/>
 
     <ImageView
         android:id="@+id/character"
         android:layout_width="150dp"
         android:layout_height="185dp"
         android:layout_below="@+id/level"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:progressDrawable="@drawable/horizontal_progress_drawable"
         app:srcCompat="@drawable/chara1" />
@@ -40,28 +41,12 @@
     <ProgressBar
         android:id="@+id/xpbar"
         style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="250dp"
+        android:layout_width="200dp"
         android:layout_height="20dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="#DBDBDB"
-        android:progressDrawable="@drawable/horizontal_progress_drawable" />
-
-    <ProgressBar
-        android:id="@+id/energybar"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="250dp"
-        android:layout_height="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/xpbar"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
@@ -71,10 +56,10 @@
     <ProgressBar
         android:id="@+id/attackbar"
         style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="250dp"
+        android:layout_width="200dp"
         android:layout_height="20dp"
+        android:layout_below="@+id/xpbar"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/energybar"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
@@ -82,7 +67,25 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:background="#DBDBDB"
-        android:progressDrawable="@drawable/horizontal_progress_drawable" />
+        android:progressDrawable="@drawable/horizontal_progress_drawable2" />
+
+    <ProgressBar
+        android:id="@+id/energybar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/attackbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#DBDBDB"
+        android:progressDrawable="@drawable/horizontal_progress_drawable3" />
+
+
 
     <!-- Steps Text Box -->
     <TextView
@@ -93,43 +96,63 @@
         android:text="Steps" />
 
     <!-- Step Counter Text Box -->
+
     <TextView
         android:id="@+id/tv_steps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_below="@id/tv_info"
+        android:layout_marginTop="28dp"
         android:text="0"
         android:textSize="40sp" />
 
-    <Button
+    <View
+        android:id="@+id/navBackground"
+        android:layout_width="match_parent"
+        android:layout_height="265dp"
+        android:layout_below="@id/energybar"
+        android:layout_marginTop="35dp"
+        android:background="#BAD5E0" />
+
+    <View
+        android:id="@+id/navBackgroundBar"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_alignTop="@id/navBackground"
+        android:layout_marginTop="13dp"
+        android:background="#FFFBF9" />
+
+    <ImageView
         android:id="@+id/trainingbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="87dp"
+        android:layout_height="87dp"
         android:layout_below="@id/tv_steps"
-        android:layout_marginTop="20dp"
-        android:text="Training" />
+        android:layout_marginTop="65dp"
+        android:layout_marginLeft="21dp"
+        android:text="Training"
+        app:srcCompat="@drawable/training" />
 
-    <Button
-        android:id="@+id/achievementsbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/rewardsbutton"
+        android:layout_width="87dp"
+        android:layout_height="87dp"
         android:layout_below="@id/tv_steps"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:text="Achievements" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="65dp"
+        android:layout_toRightOf="@id/trainingbutton"
+        android:text="Training"
+        app:srcCompat="@drawable/rewards" />
 
-    <Button
+    <ImageView
         android:id="@+id/mapbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="87dp"
+        android:layout_height="87dp"
         android:layout_below="@id/tv_steps"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_toRightOf="@id/achievementsbutton"
-        android:layout_marginLeft="40dp"
-        android:text="Map" />
-
+        android:layout_marginTop="65dp"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@id/rewardsbutton"
+        android:text="Training"
+        app:srcCompat="@drawable/map" />
 
 </RelativeLayout>
 

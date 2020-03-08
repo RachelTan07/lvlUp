@@ -8,12 +8,14 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,9 +39,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int currentSteps = 1;
 
     // Navigation
-    Button mTraining;
-    Button mAchievements;
-    Button mMap;
+    ImageView mTraining;
+    ImageView mRewards;
+    ImageView mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         mTraining = findViewById(R.id.trainingbutton);
-        mAchievements = findViewById(R.id.achievementsbutton);
+        mRewards = findViewById(R.id.rewardsbutton);
         mMap = findViewById(R.id.mapbutton);
 
         mTraining.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
-        mAchievements.setOnClickListener(new View.OnClickListener() {
+        mRewards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Achievements.class));
