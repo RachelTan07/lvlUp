@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         running = true;
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         if (countSensor != null) {
-            sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
+            sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_FASTEST);
         } else {
             Toast.makeText(this, "Sensor not found!", Toast.LENGTH_SHORT).show();
         }
@@ -136,13 +136,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (running) {
-            currentSteps = ((int) event.values[0]) % 100;
+            currentSteps = (int) (event.values[0] % 100);
 
-            if (currentSteps == 0) {
+            if (currentSteps >= 98) {
                 tv_steps.setText("0");
                 my_character.levelUp();
                 mLevel.setText("L E V E L  " + String.valueOf(my_character.getLevel()));
-                onPause();
+                currentSteps = 0;
+                mXPBar.setProgress(currentSteps);
                 openDialog();
             }
             else {
