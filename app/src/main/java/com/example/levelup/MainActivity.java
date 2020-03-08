@@ -127,7 +127,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onPause(){
         super.onPause();
         running = false;
+        Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        if(countSensor!=null){
+            sensorManager.unregisterListener(this);
+        }else{
+            Toast.makeText(this, "Sensor not found!", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -144,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 tv_steps.setText(String.valueOf(currentSteps));
                 mXPBar.setProgress(currentSteps);
             }
+
         }
     }
 
