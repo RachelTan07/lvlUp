@@ -3,6 +3,7 @@ package com.example.levelup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -12,6 +13,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +32,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     boolean running = false;
     int currentSteps = 0;
 
+    // Navigation
+    private Button mtraining;
+    private Button machievements;
+    private Button mmap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +53,33 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         // Step Counter Init
         tv_steps = findViewById(R.id.tv_steps);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        mtraining = findViewById(R.id.trainingbutton);
+        machievements = findViewById(R.id.achievementsbutton);
+        mmap = findViewById(R.id.mapbutton);
+
+        mtraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Training.class));
+            }
+        });
+
+        machievements.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Achievements.class));
+            }
+        });
+
+        mmap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Map.class));
+            }
+        });
+
+
 
         new Thread(new Runnable() {
             @Override
@@ -103,8 +137,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     // Open level up dialog
-    public void openDialog() {
+    /*public void openDialog() {
         LevelDialog ld = new LevelDialog();
         ld.show(getSupportFragmentManager(), "level dialog");
-    }
+    }*/
+
 }

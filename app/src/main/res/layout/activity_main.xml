@@ -14,12 +14,13 @@
         android:layout_height="245dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        app:srcCompat="@drawable/character" />
+        app:srcCompat="@drawable/character"
+        android:progressDrawable="@drawable/horizontal_progress_drawable"/>
 
     <ProgressBar
         android:id="@+id/xpbar"
         style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="20dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="10dp"
@@ -27,7 +28,41 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:background="#DBDBDB"
+        android:progressDrawable="@drawable/horizontal_progress_drawable" />
+
+    <ProgressBar
+        android:id="@+id/energybar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="250dp"
+        android:layout_height="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/xpbar"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#DBDBDB"
+        android:progressDrawable="@drawable/horizontal_progress_drawable" />
+
+    <ProgressBar
+        android:id="@+id/attackbar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="250dp"
+        android:layout_height="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/energybar"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#DBDBDB"
+        android:progressDrawable="@drawable/horizontal_progress_drawable" />
 
     <!-- Steps Text Box -->
     <TextView
@@ -46,6 +81,34 @@
         android:layout_below="@id/tv_info"
         android:text="0"
         android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/trainingbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_steps"
+        android:layout_marginTop="20dp"
+        android:text="Training" />
+
+    <Button
+        android:id="@+id/achievementsbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_steps"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="Achievements" />
+
+    <Button
+        android:id="@+id/mapbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_steps"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/achievementsbutton"
+        android:layout_marginLeft="45dp"
+        android:text="Map" />
 
 </RelativeLayout>
 
