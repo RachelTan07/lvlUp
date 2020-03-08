@@ -21,6 +21,9 @@ import android.widget.Toast;
 import java.util.logging.Level;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
+    //Character stats
+    Character my_character = new Character();
+    TextView mLevel;
 
     // Main Screen XP Bar
     private ProgressBar mXPBar;
@@ -49,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         // Progress Bar Init
         mXPBar = findViewById(R.id.xpbar);
+
+        mLevel = findViewById(R.id.level);
 
         // Step Counter Init
         tv_steps = findViewById(R.id.tv_steps);
@@ -127,12 +132,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (running) {
+            currentSteps = ((int) event.values[0]) % 100;
 
-            currentSteps = (int) event.values[0];
-            if (currentSteps > 100) {
-                currentSteps = currentSteps % 100;
+            if (currentSteps == 33) {
+                tv_steps.setText("0");
+                my_character.levelUp();
+                mLevel.setText("L E V E L  " + String.valueOf(my_character.getLevel()));
+                //onPause();
+                //openDialog();
+            } else {
+                tv_steps.setText(String.valueOf(currentSteps));
+                mXPBar.setProgress(currentSteps);
             }
-            tv_steps.setText(String.valueOf(currentSteps));
         }
     }
 
