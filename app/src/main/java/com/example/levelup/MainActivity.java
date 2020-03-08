@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     @Override
-    protected void onPause(){
+    protected void onStop(){
         super.onPause();
         running = false;
     }
@@ -93,11 +93,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (running) {
-
-            currentSteps = (int) event.values[0];
-            if (currentSteps > 100) {
-                currentSteps = currentSteps % 100;
-            }
+            currentSteps = ((int) event.values[0]) % 100;
             tv_steps.setText(String.valueOf(currentSteps));
         }
     }

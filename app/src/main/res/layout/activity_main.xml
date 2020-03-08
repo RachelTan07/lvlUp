@@ -29,17 +29,6 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp" />
 
-    <TextView
-        android:id="@+id/xpmax"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/xpbar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="Level Up!"
-        android:visibility="invisible"
-        android:textSize="24sp" />
-
     <!-- Steps Text Box -->
     <TextView
         android:id="@+id/tv_info"
